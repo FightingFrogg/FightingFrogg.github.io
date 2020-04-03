@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/image/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Hexy&#39;s big baby</a></h1>
@@ -81,9 +81,7 @@
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
-		        
-					<a class="mail" target="_blank" href="mailto:litten225@qq.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weixin" target="_blank" href="#18311390252" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -101,7 +99,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/image/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Hexy&#39;s big baby</h1>
@@ -122,9 +120,7 @@
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="bilibili" target="_blank" href="#" title="bilibili"><i class="icon-bilibili"></i></a>
-			        
-						<a class="mail" target="_blank" href="mailto:litten225@qq.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weixin" target="_blank" href="#18311390252" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -151,6 +147,197 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-二维数组传参" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/03/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82/">二维数组传参</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/03/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82/" class="archive-article-date">
+  	<time datetime="2020-04-03T10:39:21.938Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二维数组作为形参输入"><a href="#二维数组作为形参输入" class="headerlink" title="二维数组作为形参输入"></a>二维数组作为形参输入</h1><p>可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如：</p>
+<pre><code>void Func(int array[3][10]);
+void Func(int array[][10]);大</code></pre><p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：</p>
+<pre><code>void Func(int array[][]);</code></pre><p>　　因为从实参传递来的是数组的起始地址，在内存中按数组排列规则存放(按行存放)，而并不区分行和列，如果在形参中不说明列数，则系统无法决定应为多少行多少列，不能只指定一维而不指定第二维，下面写法是错误的：</p>
+<pre><code>void Func(int array[3][]);</code></pre><p>　　实参数组维数可以大于形参数组，例如实参（zhihui3409注：应该是形参）数组定义为：</p>
+<pre><code>void Func(int array[3][10]);</code></pre><p>而形参（zhihui3409注：应该是实参）数组定义为：</p>
+<pre><code>int array[5][10];</code></pre><p>这时形参数组只取实参数组的一部分，其余部分不起作用。  </p>
+<p>大家可以看到，将二维数组当作参数的时候，必须指明所有维数大小或者省 略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。  </p>
+<p>根据编译原理可知，如果我们省略了第二维或者更高维的大小，编译器将不知道如何正确的寻址。但是我们在编写程序的时候却需要用到各个维数都不固定的二维数组作为参数，这就难办了，编译器不能识别啊，怎么办呢？不要着急，编译器虽然不能识别，但是我们完全可以不把它当作一个二维数组，而是把它当作一个普通的指针，再另外加上两个参数指明各个维数，然后我们为二维数组手工寻址，这样就达到了将二维数组作为函数的参数传递的目的，根据这个思想，我们可以把维数固定的参数变为维数随机的参数，例如：</p>
+<pre><code>void Func(int array[3][10]); 
+void Func(int array[][10]);</code></pre><p>变为：</p>
+<pre><code>void Func(int **array, int RowSize, int LineSize);</code></pre><p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]手工转变为：  </p>
+<pre><code>*((int*)array + LineSize*i + j);  </code></pre><p>即把二维数组当作一维数组来处理，这是比较容易理解的方式。其它方式见下面总结的第二点。</p>
+<h2 id="数组作为形参的问题总结"><a href="#数组作为形参的问题总结" class="headerlink" title="　　数组作为形参的问题总结:"></a>　　<strong>数组作为形参的问题总结:</strong></h2><h2 id="1-一维数组作为函数形参"><a href="#1-一维数组作为函数形参" class="headerlink" title="1 一维数组作为函数形参"></a>1 一维数组作为函数形参</h2><p>数组作为形参时，编译器通常只会检查数组形参关联的实参，检查的项目包括实参是不是指针、指针类型和数组元素的类型是否匹配，但不会检查数组的长度。</p>
+<pre><code>void print( int *a[] )
+void print( int *a[10] )
+void print( int *a )</code></pre><p>上面两个都是二级指针，下面一个是一级指针</p>
+<p>　　在很多情况下，将数组形参直接定义为指针要比使用数组语法定义方便很多。因为定义为指针后，函数可以借助于指针方便的操作数组元素。<br>　　数组以非引用类型的传递时，此时数组会自动转换为同类型的指针，即初始化为相应类型实参的副本。调用函数时，函数实际操作的是指针的副本，而不会修改实参指针的值，但是可以通过指针改变数组元素的值。</p>
+<h2 id="2-多维数组的传递"><a href="#2-多维数组的传递" class="headerlink" title="2 多维数组的传递"></a>2 多维数组的传递</h2><p>　　多维数组的元素本身就是数组。</p>
+<p>　　对二维数组的处理可以采用将二维数组看作一维或者二维数组来处理，下面两个例子分别采用了这两种方法。第3个例子有点不同，但实际上也是利用了一维数组作中间过渡处理。</p>
+<p>　　例1 将二维数组当作一维数组来处理:</p>
+<pre><code>//print_array和主函数中的循环printf实现了同样效果
+#include &lt;stdio.h&gt;
+void print_array(int *p,int RowSize,int LineSize)
+{
+ int i,j;
+ for(i=0 ; i&lt;RowSize ;i++)
+ {
+  for(j=0 ; j&lt;LineSize ;j++)
+   printf(&quot;%d &quot;,*(p+i*LineSize+j));
+  printf(&quot;\n&quot;);
+ }
+}
+
+void main() 
+{ 
+ int i,j,a[3][3]={ {1,0,0} , {0,1,0} , {0,0,1} };
+ print_array( (int *)a ,3,3);
+ for(i=0;i&lt;3;i++)
+ {
+  for(j=0;j&lt;3;j++)
+   printf(&quot;%d &quot;,*(*(a+i)+j));
+  printf(&quot;\n&quot;);
+ }
+}</code></pre><p>　　例2 将二维数组依旧当作二维数组来处理<br>　　下面是一个字符串数组的参数传递程序，实现将字符串数组中的字符串按照从小到大的顺序进行排序：</p>
+<pre><code>//WordSort实现了对5个字符串的排序
+#include &quot;stdio.h&quot;
+#include &quot;stdlib.h&quot;
+#include &quot;string.h&quot;
+void WordSort(char p[][10],int RowSize)
+{
+ int n=0,m;
+ char temp[10];
+ for(n=0;n&lt;RowSize;n++) 
+  for(m=n+1;m&lt;RowSize;m++) 
+  if( strcmp(p[m],p[n]) &lt; 0 )
+  { 
+   strcpy(temp,p[n]);
+   strcpy(p[n],p[m]);
+   strcpy(p[m],temp);
+  }
+ for(n=0;n&lt;5;++n)
+  printf(&quot;In subfunction:%s\n&quot;,p[n]);
+}
+
+void main()
+{
+ int k=0;
+ char word[5][10];
+ for(;k&lt;5;++k)
+  scanf(&quot;%s&quot;,&amp;word[k]);
+ WordSort(word,5);
+ printf(&quot;sorted word:\n&quot;);
+ for(k=0;k&lt;5;k++)
+  printf(&quot;In main function:%s\n&quot;,word[k]);
+ system(&quot;pause&quot;);
+}</code></pre><p>　　<br>　　例3 用“行指针”传递参数<br>　　运行下面程序：    </p>
+<pre><code>/************************************/
+//二维数组作为形参的参数传递方式之一
+/************************************/
+#include &lt;stdio.h&gt;
+void print_array_1(int (*a)[3], int Row_Size) 
+{ 
+ int j; 
+ for(j=0;j&lt;3*Row_Size;j++)
+ {
+  printf(&quot;%d &quot;,(*a)[j]);
+  if(j%3==2) printf(&quot;\n&quot;);
+ }
+}
+
+void print_array_2(int (*a)[3], int Row_Size)
+{ 
+ int i,j;
+ for(i=0;i&lt;Row_Size;i++) 
+ {
+  for(j=0;j&lt;3;j++) 
+   printf(&quot;%d &quot;,*(*(a+i)+j));
+  printf(&quot;\n&quot;);
+ }
+}
+
+void main() 
+{ 
+ int i,j,value=0; 
+ int a[4][3]={0}; 
+ for(i=0;i&lt;4;i++) 
+  for(j=0;j&lt;3;j++) 
+   a[i][j]=value++;
+
+ print_array_1(a,4);
+ printf(&quot;\n&quot;);
+ print_array_2(a,4); 
+} </code></pre><p>　　这个程序中的两个函数实现了相同的功能：打印数组元素。这种方法可能容易使人迷惑：int (*a)[3] 是什么东西呢？还得看强哥的书（P229-P230），上面这样写道（在本例中）: *a有3个元素，每个元素为整型。也就是a所指向的对象是有3个整型元素的数组，即a是行指针。  </p>
+<p>再强调一遍 int (*a)[3] 中括号的作用，如果不明白它的重要性，请仔细对比本文章黄色背景的代码。  </p>
+<p>补充一点，用这个方法处理字符串数组（字符型二维数组），还是比较方便的：用这样一个例子结束本文：</p>
+<pre><code>//打印数组内字符串（一行）
+#include &lt;stdio.h&gt;
+void print_string(char (*string)[20], int Row_Size)
+{
+ int i;
+ for(i=0;i&lt;Row_Size;i++)
+  printf(&quot;%s\n&quot;,string+i);
+}
+
+void main()
+{
+ char a[6][20]={&quot;God&quot;,&quot;bless&quot;,&quot;you&quot;,&quot;who&quot;,&quot;help&quot;,&quot;themselves&quot;};
+ print_string(a,6);
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/03/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
