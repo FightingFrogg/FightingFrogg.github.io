@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>二维数组传参 | Hexy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二维数组作为形参输入可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如： void Func(int array[3][10]); void Func(int array[][10]);大二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的： void Func(int array[][]);　　因为从">
+  <meta name="description" content="二维数组作为形参输入可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如： void Func(int array[3][10]); void Func(int array[][10]);大二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的： void Func(int array[][]);因为从实参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二维数组传参">
 <meta property="og:url" content="http://yoursite.com/2020/04/03/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BC%A0%E5%8F%82/index.html">
 <meta property="og:site_name" content="Hexy">
-<meta property="og:description" content="二维数组作为形参输入可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如： void Func(int array[3][10]); void Func(int array[][10]);大二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的： void Func(int array[][]);　　因为从">
+<meta property="og:description" content="二维数组作为形参输入可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如： void Func(int array[3][10]); void Func(int array[][10]);大二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的： void Func(int array[][]);因为从实参">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-03T10:39:21.938Z">
-<meta property="article:modified_time" content="2020-04-03T12:51:20.485Z">
+<meta property="article:modified_time" content="2020-04-03T13:23:37.667Z">
 <meta property="article:author" content="Hexy&#39;s big baby">
 <meta name="twitter:card" content="summary">
   
@@ -173,8 +173,10 @@
         <h1 id="二维数组作为形参输入"><a href="#二维数组作为形参输入" class="headerlink" title="二维数组作为形参输入"></a>二维数组作为形参输入</h1><p>可以用二维数组名作为实参或者形参，在被调用函数中对形参数组定义时可以指定所有维数的小，也可以省略第一维的大小说明，如：</p>
 <pre><code>void Func(int array[3][10]);
 void Func(int array[][10]);大</code></pre><p>二者都是合法而且等价，但是不能把第二维或者更高维的大小省略，如下面的定义是不合法的：</p>
-<pre><code>void Func(int array[][]);</code></pre><p>　　因为从实参传递来的是数组的起始地址，在内存中按数组排列规则存放(按行存放)，而并不区分行和列，如果在形参中不说明列数，则系统无法决定应为多少行多少列，不能只指定一维而不指定第二维，下面写法是错误的：</p>
-<pre><code>void Func(int array[3][]);</code></pre><p>　　实参数组维数可以大于形参数组，例如实参（zhihui3409注：应该是形参）数组定义为：</p>
+<pre><code>void Func(int array[][]);</code></pre><p>因为从实参传递来的是数组的起始地址，在内存中按数组排列规则存放(按行存放)，而并不区分行和列，如果在形参中不说明列数，则系统无法决定应为多少行多少列，不能只指定一维而不指定第二维，下面写法是错误的：</p>
+<pre><code>void Func(int array[3][]);</code></pre><p>实参数组维数可以大于形参数组，例如实参（zhihui3409注：应该是形参）数组定义为：</p>
+<a id="more"></a>
+
 <pre><code>void Func(int array[3][10]);</code></pre><p>而形参（zhihui3409注：应该是实参）数组定义为：</p>
 <pre><code>int array[5][10];</code></pre><p>这时形参数组只取实参数组的一部分，其余部分不起作用。  </p>
 <p>大家可以看到，将二维数组当作参数的时候，必须指明所有维数大小或者省 略第一维的，但是不能省略第二维或者更高维的大小，这是由编译器原理限制的。  </p>
@@ -183,7 +185,7 @@ void Func(int array[][10]);大</code></pre><p>二者都是合法而且等价，�
 void Func(int array[][10]);</code></pre><p>变为：</p>
 <pre><code>void Func(int **array, int RowSize, int LineSize);</code></pre><p>在转变后的函数中，array[i][j]这样的式子是不对的(不信，大家可以试一下)，因为编译器不能正确的为它寻址，所以我们需要模仿编译器的行为把array[i][j]手工转变为：  </p>
 <pre><code>*((int*)array + LineSize*i + j);  </code></pre><p>即把二维数组当作一维数组来处理，这是比较容易理解的方式。其它方式见下面总结的第二点。</p>
-<h2 id="数组作为形参的问题总结"><a href="#数组作为形参的问题总结" class="headerlink" title="　　数组作为形参的问题总结:"></a>　　<strong>数组作为形参的问题总结:</strong></h2><h2 id="1-一维数组作为函数形参"><a href="#1-一维数组作为函数形参" class="headerlink" title="1 一维数组作为函数形参"></a>1 一维数组作为函数形参</h2><p>数组作为形参时，编译器通常只会检查数组形参关联的实参，检查的项目包括实参是不是指针、指针类型和数组元素的类型是否匹配，但不会检查数组的长度。</p>
+<h2 id="数组作为形参的问题总结"><a href="#数组作为形参的问题总结" class="headerlink" title="数组作为形参的问题总结:"></a><strong>数组作为形参的问题总结:</strong></h2><h2 id="1-一维数组作为函数形参"><a href="#1-一维数组作为函数形参" class="headerlink" title="1 一维数组作为函数形参"></a>1 一维数组作为函数形参</h2><p>数组作为形参时，编译器通常只会检查数组形参关联的实参，检查的项目包括实参是不是指针、指针类型和数组元素的类型是否匹配，但不会检查数组的长度。</p>
 <pre><code>void print( int *a[] )
 void print( int *a[10] )
 void print( int *a )</code></pre><p>上面两个都是二级指针，下面一个是一级指针</p>
