@@ -1,0 +1,31 @@
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Writing database to /Users/Macbook/Git/Blog/db.json","time":"2020-10-24T14:55:02.015Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Hexo version: \u001b[35m4.2.0\u001b[39m","time":"2020-10-24T14:55:02.029Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Working directory: \u001b[35m~/Git/Blog/\u001b[39m","time":"2020-10-24T14:55:02.029Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Config loaded: \u001b[35m~/Git/Blog/_config.yml\u001b[39m","time":"2020-10-24T14:55:02.128Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-deployer-git\u001b[39m","time":"2020-10-24T14:55:02.236Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-archive\u001b[39m","time":"2020-10-24T14:55:02.238Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-category\u001b[39m","time":"2020-10-24T14:55:02.239Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-index\u001b[39m","time":"2020-10-24T14:55:02.240Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-generator-tag\u001b[39m","time":"2020-10-24T14:55:02.241Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-ejs\u001b[39m","time":"2020-10-24T14:55:02.244Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-marked\u001b[39m","time":"2020-10-24T14:55:02.283Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-renderer-stylus\u001b[39m","time":"2020-10-24T14:55:02.350Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Plugin loaded: \u001b[35mhexo-server\u001b[39m","time":"2020-10-24T14:55:02.436Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Loading database.","time":"2020-10-24T14:55:02.449Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":30,"msg":"Start processing","time":"2020-10-24T14:55:02.485Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Processed: \u001b[35m_posts/hello-world.md\u001b[39m","time":"2020-10-24T14:55:02.500Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Processed: \u001b[35m_posts/my-first-blog.md\u001b[39m","time":"2020-10-24T14:55:02.501Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Processed: \u001b[35m_posts/二维数组传参.md\u001b[39m","time":"2020-10-24T14:55:02.501Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Processed: \u001b[35mimage/alipay.jpg\u001b[39m","time":"2020-10-24T14:55:02.502Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Processed: \u001b[35mimage/avatar.jpg\u001b[39m","time":"2020-10-24T14:55:02.502Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35mpage\u001b[39m","time":"2020-10-24T14:55:02.526Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35mpost\u001b[39m","time":"2020-10-24T14:55:02.526Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35marchive\u001b[39m","time":"2020-10-24T14:55:02.527Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35mcategory\u001b[39m","time":"2020-10-24T14:55:02.527Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35mindex\u001b[39m","time":"2020-10-24T14:55:02.527Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35mtag\u001b[39m","time":"2020-10-24T14:55:02.527Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Generator: \u001b[35masset\u001b[39m","time":"2020-10-24T14:55:02.527Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":30,"msg":"Hexo is running at \u001b[4mhttp://localhost:4000\u001b[24m . Press Ctrl+C to stop.","time":"2020-10-24T14:55:02.539Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":20,"msg":"Database saved","time":"2020-10-24T14:55:02.544Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2020-10-24T14:55:09.444Z","v":0}
+{"name":"hexo","hostname":"macdeMacBook-Pro-4.local","pid":4502,"level":40,"msg":"No layout: \u001b[35mindex.html\u001b[39m","time":"2020-10-24T14:55:12.169Z","v":0}
